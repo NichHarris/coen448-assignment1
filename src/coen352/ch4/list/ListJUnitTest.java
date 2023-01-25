@@ -12,9 +12,9 @@ import org.junit.jupiter.api.TestInstance;
 
 public class ListJUnitTest {
 
-	  private static ADTList<Integer> La;
-	  private static ADTList<Integer> Ll;
-	  private static ADTList<Object> Ld;
+	  private static AList<Integer> La;
+	  private static LList<Integer> Ll;
+	  private static DList<Object> Ld;
 	  
 	
 	  
