@@ -1,22 +1,15 @@
 package coen352.ch4.list;
 
-
-
-
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 
-
 public class ListTestRunner {
-   
-	
 	public static void main(String[] args) {
 	   
 	   ListTestRunner.runManualTest();
 	   
-	   //ListTestRunner.runJUnit5();
-	   
+	   ListTestRunner.runJUnit5();
    }
    
    public static void runManualTest() {
@@ -41,7 +34,5 @@ public class ListTestRunner {
        {
            System.out.println(failure.toString());
        }
-	   
-
    }
 }
