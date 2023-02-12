@@ -9,18 +9,19 @@ import org.junit.jupiter.api.Test;
 
 class QueueJUnitTest {
 	
-	private ADTQueue<Integer> Q1;
-	private ADTQueue<Integer> Q2;
-	
-	
+	private ADTQueue<Integer> Q1 = new DQueue<>();
+	private ADTQueue<Integer> Q2 = new DQueue<>();
+
+	private ADTQueue<Integer> AQ1 = new AQueue<>();
+
+	private ADTQueue<Integer> LQ1 = new LQueue<>();
 
 	@BeforeEach
 	void setUp() throws Exception {
-		
-		Q1 = new DQueue<Integer>();
-		Q2 = new DQueue<Integer>();
-		
-		
+		this.Q1 = new DQueue<Integer>();
+		this.Q2 = new DQueue<Integer>();
+		this.AQ1 = new AQueue<Integer>(15);
+		this.LQ1 = new LQueue<Integer>(15);
 	}
 
 	@Test
@@ -38,7 +39,6 @@ class QueueJUnitTest {
 		}
 		assertEquals("< >", Q2.toString());
 		assertEquals("< 10 20 15 >", Q1.toString());
-
 	}
 	
 	
