@@ -14,19 +14,19 @@ public class ListTestRunner {
    
    public static void runManualTest() {
 	   ListJUnitTest t = new ListJUnitTest();
-	   ListJUnitTest.setUp();
-	   //t.testAppend();
-	   //t.testFind();
-	   //t.testListOfObjects();
-	   //t.testNext();
-	   //t.testRemove();
-	   //t.testNext();
+//	   ListJUnitTest.setUp();
+	   t.testAppend();
+	   t.testFind();
+	   t.testListOfObjects();
+	   t.testNext();
+//	   t.testRemove();
+	   t.testNext();
 	   t.testInsert();
    }
    
    public static void runJUnit5() {
 	   JUnitCore jUnitCore = new JUnitCore();
-	   Result result = jUnitCore.run(ListJUnitTest.class);
+	   Result result = jUnitCore.runClasses(ListJUnitTest.class);
 	   System.out.printf("Test ran: %s, Failed: %s%n",
 		          result.getRunCount(), result.getFailureCount());
 	

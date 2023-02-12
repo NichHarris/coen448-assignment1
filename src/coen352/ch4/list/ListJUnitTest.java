@@ -2,44 +2,38 @@ package coen352.ch4.list;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.Test;
 import org.junit.jupiter.api.TestInstance;
-
-
-
 
 public class ListJUnitTest {
 
-	  private static AList<Integer> La;
-	  private static LList<Integer> Ll;
-	  private static DList<Object> Ld;
-	  
-	
+	  private AList<Integer> La = new AList<>();
+	  private LList<Integer> Ll = new LList<>();
+	  private DList<Object> Ld = new DList<>();
 	  
 	  /**
 	   * This method is automatically called once before each test case method,
 	   * so that all the variables are cleanly initialized for each test.
 	   */
-	  @BeforeAll
-	  public static void setUp()
-	  {
-		La = new AList<Integer>(15);  
-	    
-		Ll = new LList<Integer>();
-	    
-	    Ld = new DList<Object>();
-	    
-	   
-	    
+	  @BeforeEach
+	  void setUp() {
+
+	    System.out.println("here");
+		this.La = new AList<>(15);
+
+		  System.out.println("here1");
+		this.Ll = new LList<>();
+
+		  System.out.println("here2");
+		this.Ld = new DList<>();
+
 	  }
 	  
 	
-	@Test
+	  @Test
 	  public void testSetValue() {
-		  
-		  
 		 ADTList<Integer> list =  new DList<Integer>();
 		 list.clear();
 		 list.insert(Integer.valueOf(25));
@@ -47,30 +41,25 @@ public class ListJUnitTest {
 		 list.insert(Integer.valueOf(2));
 		 String s = list.toString();
 		 
-//		 Integer temp1 = list.getValue(0);
-//		 Integer temp2 = list.getValue(2);
-//		 int curr = list.currPos();
-//		
-//		  list.moveToPos(0);
-//		  list.setValue(temp2);
-//		 
-//		  list.moveToPos(2);
-//		  list.setValue(temp1);
-//		  list.moveToPos(curr);
+		 Integer temp1 = list.getValue(0);
+		 Integer temp2 = list.getValue(2);
 		 		 
 		 assertEquals("< | 2 3 25 >", list.toString());
-		    
+
+		 // Reverse
+		 int curr = list.currPos();
+		 list.moveToPos(0);
+		 list.setValue(temp2);
+
+		 list.moveToPos(2);
+		 list.setValue(temp1);
+		 list.moveToPos(curr);
+		 assertEquals("< | 25 3 2 >", list.toString());
 		  
 	  }
-	  
-	  
-	  
-	
-	
+
 	  /** @return True if k is in list L, false otherwise */
-	
-	 @Test
-	  public static boolean find(ADTList<Integer> L, int k) {
+	  public boolean find(ADTList<Integer> L, int k) {
 	     int origin = L.currPos();
 	     
 		 for (L.moveToStart(); L.currPos()<L.length(); L.next()) {
@@ -83,8 +72,7 @@ public class ListJUnitTest {
 		 L.moveToPos(origin);
 		 return false;                            // k not found
 	}
-	 
-	 
+
 	 @Test
 	  public void testInsert()
 	  {
@@ -124,12 +112,14 @@ public class ListJUnitTest {
 		Ll.remove();
 		Ll.insert(40);
 		assertEquals(40,Ll.remove());
-		
-	   // L2.append(1);
-	   // assertEquals("< | 1 >", L2.toString());
-	   // assertEquals(1, (int)L2.remove());
-	   //assertEquals("< | >", L2.toString());
-	    //assertEquals(null, L2.remove());
+
+		// Second list
+		LList<Integer> L2 = new LList<>();
+	    L2.append(1);
+	    assertEquals("< | 1 >", L2.toString());
+	    assertEquals(1, (int)L2.remove());
+	    assertEquals("< | >", L2.toString());
+	    assertEquals(null, L2.remove());
 	  }
 	 
 	 @Test
@@ -180,11 +170,8 @@ public class ListJUnitTest {
 	    assertEquals("< 39 | 5 9 4 3 2 1 >", Ll.toString());
 	    assertEquals(7, Ll.length());
 
-	   // assertEquals(6, L2.find(20));
-	    
-	    
+//	    assertEquals(6, L2.find(20));
 	  }
-
 
 	 @Test
 	  public void testListOfObjects()
@@ -241,5 +228,4 @@ public class ListJUnitTest {
 		 La.insert(40);
 		 assertEquals(1,La.find(20));
 	 }
-
 }
