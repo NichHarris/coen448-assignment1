@@ -328,7 +328,11 @@ class QueueJUnitTest {
 	public void testPositiveLQSize() {
 		LQ2 = new LQueue<>(21);
 
-		assertEquals("Queue is empty", LQ1.dequeue());
+		AssertionError assertionError = assertThrows(AssertionError.class, () -> {
+			LQ2.dequeue();
+		});
+
+		assertEquals("Queue is empty", assertionError.getMessage());
 
 		LQ1.enqueue(15);
 		LQ1.enqueue(22);
