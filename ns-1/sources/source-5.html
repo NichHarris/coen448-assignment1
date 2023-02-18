@@ -1,0 +1,97 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ADTQueue</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">coen448.coen6717.A1.queue</a>
+</div>
+
+<h1>Coverage Summary for Class: ADTQueue (coen448.coen6717.A1.queue)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">ADTQueue</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package coen448.coen6717.A1.queue;
+&nbsp;
+&nbsp;
+&nbsp;/** Source code example for &quot;A Practical Introduction to Data
+&nbsp;    Structures and Algorithm Analysis, 3rd Edition (Java)&quot; 
+&nbsp;    by Clifford A. Shaffer
+&nbsp;    Copyright 2008-2011 by Clifford A. Shaffer
+&nbsp;*/
+&nbsp;
+&nbsp;/** Queue ADT */
+&nbsp;public interface ADTQueue&lt;E&gt; {
+&nbsp;
+&nbsp;  /** Reinitialize the queue.  The user is responsible for
+&nbsp;      reclaiming the storage used by the queue elements. */
+&nbsp;  public void clear();
+&nbsp;
+&nbsp;  /** Place an element at the rear of the queue.
+&nbsp;      @param it The element being enqueued. */
+&nbsp;  public void enqueue(E it);
+&nbsp;
+&nbsp;  /** Remove and return element at the front of the queue.
+&nbsp;      @return The element at the front of the queue. */
+&nbsp;  public E dequeue();
+&nbsp;
+&nbsp;  /** @return The front element. */
+&nbsp;  public E frontValue();
+&nbsp;
+&nbsp;  /** @return The number of elements in the queue. */
+&nbsp;  public int length();
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-02-18 15:07</div>
+</div>
+</body>
+</html>

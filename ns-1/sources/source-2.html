@@ -1,0 +1,185 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > DQueue</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">coen448.coen6717.A1.queue</a>
+</div>
+
+<h1>Coverage Summary for Class: DQueue (coen448.coen6717.A1.queue)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">DQueue</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    75%
+  </span>
+  <span class="absValue">
+    (6/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    92%
+  </span>
+  <span class="absValue">
+    (23/25)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package coen448.coen6717.A1.queue;
+&nbsp;
+&nbsp;import coen352.ch4.list.*;
+&nbsp;
+&nbsp;public class DQueue&lt;E&gt; implements ADTQueue&lt;E&gt; {
+&nbsp;	
+&nbsp;	private DLink&lt;E&gt; front;    // Pointer to front queue node
+&nbsp;	private DLink&lt;E&gt; rear;     // Pointer to rear queuenode
+&nbsp;	int size;		    // Number of elements in queue
+&nbsp;	
+&nbsp;	/** Constructors */
+<b class="fc">&nbsp;	public DQueue() { init(); }</b>
+&nbsp;	
+&nbsp;	
+&nbsp;	/** Initialize queue */
+&nbsp;	private void init() {
+&nbsp;		
+<b class="fc">&nbsp;		front = new DLink&lt;E&gt;(null, null); // Create header node</b>
+<b class="fc">&nbsp;		rear = new DLink&lt;E&gt;(front, null);</b>
+<b class="fc">&nbsp;		front.setNext(rear);</b>
+&nbsp;		
+&nbsp;	}
+&nbsp;	
+&nbsp;	/** Reinitialize queue */
+<b class="nc">&nbsp;	public void clear() { init(); }</b>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public void enqueue(E it) {
+<b class="fc">&nbsp;		rear.prev().setNext(new DLink&lt;E&gt;(it,rear.prev(),rear ));</b>
+<b class="fc">&nbsp;		rear.setPrev(rear.prev().next());</b>
+<b class="fc">&nbsp;		++size;</b>
+&nbsp;		
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public E dequeue() {
+<b class="fc">&nbsp;		DLink&lt;E&gt; temp = front.next();</b>
+<b class="fc">&nbsp;		E value = temp.element();</b>
+<b class="fc">&nbsp;		front.next().next().setPrev(front);</b>
+<b class="fc">&nbsp;		front.setNext(front.next().next());</b>
+<b class="fc">&nbsp;		temp.setPrev(null);</b>
+<b class="fc">&nbsp;		temp.setNext(null);</b>
+<b class="fc">&nbsp;		--size;</b>
+<b class="fc">&nbsp;		return value; </b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public E frontValue() {
+&nbsp;		// TODO Auto-generated method stub
+<b class="nc">&nbsp;		return null;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	public int length() {
+&nbsp;		
+<b class="fc">&nbsp;		return size;</b>
+&nbsp;	}
+&nbsp;	
+&nbsp;	/**
+&nbsp;	* Generate a human-readable representation of this queue&#39;s contents
+&nbsp;	* that looks something like this: &lt; 1 2 3 &gt;.
+&nbsp;	* This method uses toString() on the individual elements.
+&nbsp;	* @return The string representation of this queue
+&nbsp;	*/
+&nbsp;	public String toString()
+&nbsp;	{
+<b class="fc">&nbsp;		StringBuffer out = new StringBuffer((length() + 1) * 4);</b>
+<b class="fc">&nbsp;		out.append(&quot;&lt; &quot;);</b>
+<b class="fc">&nbsp;		for (DLink&lt;E&gt; i = front.next(); i != rear; i = i.next()) {</b>
+<b class="fc">&nbsp;		  out.append(i.element());</b>
+<b class="fc">&nbsp;		  out.append(&quot; &quot;);</b>
+&nbsp;		}
+<b class="fc">&nbsp;		out.append(&quot;&gt;&quot;);</b>
+<b class="fc">&nbsp;		return out.toString();</b>
+&nbsp;	}
+&nbsp;	
+&nbsp;	
+&nbsp;	
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-02-18 15:07</div>
+</div>
+</body>
+</html>
