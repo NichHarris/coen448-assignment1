@@ -54,7 +54,11 @@ class QueueJUnitTest {
 		assertEquals("< 10 20 15 >", DQ1.toString());
 	}
 	
-	
+
+	/*
+		Each Choice Coverage (ECC)
+	 */
+
 	// Test Function #2
     // Test type : Functional, blackbox
     // Input : < -2, 10 >
@@ -286,7 +290,7 @@ class QueueJUnitTest {
 	// Test type : Functional, blackbox
 	// Input : < -1, null >
 	// Description : Test setting -1 value for the queue size, inserting a null element, and dequeuing an element
-	// Expected output : <0, null >
+	// Expected output : <0, null, "Queue is empty" >
 	// Tester : Nicholas Harris
 	// Date : 18th February
 	@Test
@@ -321,7 +325,7 @@ class QueueJUnitTest {
 	// Test type : Functional, blackbox
 	// Input : < 8, 1, 2, 3, 4 >
 	// Description : Test setting a positive value for the queue size, inserting 4 elements and dequeuing one element
-	// Expected output : <"Queue is empty" >
+	// Expected output : < "Queue is empty", "< 22 33 44 >" >
 	// Tester : Nicholas Harris
 	// Date : 18th February
 	@Test
@@ -371,5 +375,374 @@ class QueueJUnitTest {
 		LQ2.enqueue(LQ1.dequeue());
 		assertEquals("< 15 >", LQ2.toString());
 		assertEquals("< 22 33 44 >", LQ1.toString());
+	}
+
+
+	/*
+		Block Choice Coverage (BCC)
+	*/
+
+	// Test Function #12
+	// Test type : Functional, blackbox
+	// Input : <15 15 15 16>
+	// Description : Test setting positive value for the queue size, and inserting elements, dequeueing elements
+	// Expected output : < 1, 3, 15, 2, < 15 16 >>
+	// Tester : Nicholas Harris
+	// Date : 18th February
+	@Test
+	public void testAQBase() {
+		AQ1 = new AQueue<>(15);
+
+		AQ1.enqueue(15);
+		assertEquals(1, AQ1.length());
+
+		AQ1.enqueue(15);
+		AQ1.enqueue(16);
+
+		assertEquals(3, AQ1.length());
+		assertEquals(15, AQ1.dequeue());
+		assertEquals(2, AQ1.length());
+		assertEquals("< 15 16 >", AQ1.toString());
+	}
+
+		/*
+		Block Choice Coverage (BCC)
+	*/
+
+	// Test Function #13
+	// Test type : Functional, blackbox
+	// Input : <2 15 15 16 >
+	// Description : Test setting positive value for the queue size, and inserting elements until queue is full, dequeueing elements
+	// Expected output : < 1, 2, Queue is full, 2, 15, 1, < 15 >>
+	// Tester : Nicholas Harris
+	// Date : 18th February
+	// BUG REPORT: Index out of bounds when printing array contents after a dequeue
+	@Test
+	public void testAQ2() {
+		AQ1 = new AQueue<>(2);
+
+		AQ1.enqueue(15);
+		assertEquals(1, AQ1.length());
+
+		AQ1.enqueue(15);
+
+		assertEquals(2, AQ1.length());
+
+		AssertionError assertionError = assertThrows(AssertionError.class, () -> {
+			AQ1.enqueue(16);
+		});
+
+		assertEquals("Queue is full", assertionError.getMessage());
+
+		assertEquals(2, AQ1.length());
+		assertEquals(15, AQ1.dequeue());
+		assertEquals(1, AQ1.length());
+		assertEquals("< 15 >", AQ1.toString());
+	}
+
+	// Test Function #14
+	// Test type : Functional, blackbox
+	// Input : <10 15 >
+	// Description : Test setting positive value for the queue size, and inserting elements, dequeueing elements form empty queue
+	// Expected output : < 0, Queue is empty, < 15 >>
+	// Tester : Nicholas Harris
+	// Date : 18th February
+	@Test
+	public void testAQ3() {
+		AQ1 = new AQueue<>(10);
+
+		assertEquals(0, AQ1.length());
+
+		AssertionError assertionError = assertThrows(AssertionError.class, () -> {
+			AQ1.dequeue();
+		});
+
+		assertEquals("Queue is empty", assertionError.getMessage());
+
+		AQ1.enqueue(15);
+		assertEquals("< 15 >", AQ1.toString());
+	}
+
+	// Test Function #15
+	// Test type : Functional, blackbox
+	// Input : <10 null null null>
+	// Description : Test setting positive value for the queue size, and inserting null elements, dequeueing elements
+	// Expected output : < < null null null >, null, < null null >>
+	// Tester : Nicholas Harris
+	// Date : 18th February
+	@Test
+	public void testAQ4() {
+		AQ1 = new AQueue<>(10);
+
+		AQ1.enqueue(null);
+		AQ1.enqueue(null);
+		AQ1.enqueue(null);
+
+		assertEquals("< null null null >", AQ1.toString());
+		assertEquals(null, AQ1.dequeue());
+		assertEquals("< null null >", AQ1.toString());
+	}
+
+	// Test Function #16
+	// Test type : Functional, blackbox
+	// Input : <-10 11 44 22 33>
+	// Description : Test setting negative value for the queue size, and inserting elements, dequeueing elements
+	// Expected output : < NegativeArraySizeException, 4, < 11 44 22 33 >, 11, < 44 22 33 >>
+	// Tester : Nicholas Harris
+	// Date : 18th February
+	@Test
+	public void testAQ5() {
+		try {
+			AQ2 = new AQueue<>(-10);
+		} catch (NegativeArraySizeException e) {
+			Exception exception = assertThrows(NegativeArraySizeException.class, () -> {
+				AQ2 = new AQueue<>(-10);
+			});
+			assertEquals(exception.getMessage(), e.getMessage());
+		}
+
+		AQ2.enqueue(11);
+		AQ2.enqueue(44);
+		AQ2.enqueue(22);
+		AQ2.enqueue(33);
+		assertEquals(4, AQ2.length());
+		assertEquals("< 11 44 22 33 >", AQ2.toString());
+		assertEquals(11, AQ2.dequeue());
+		assertEquals("< 44 22 33 >", AQ2.toString());
+	}
+
+	// Test Function #17
+	// Test type : Functional, blackbox
+	// Input : <-1 11 44 22 33>
+	// Description : Test setting -1 value for the queue size, and inserting elements, dequeueing elements
+	// Expected output : < ArithmeticException, 4, < 11 44 22 33 >, 11, < 44 22 33 >>
+	// Tester : Nicholas Harris
+	// Date : 18th February
+	@Test
+	public void testAQ6() {
+		AQ2 = new AQueue<>(-1);
+
+		try {
+			AQ2.length();
+		} catch (ArithmeticException e) {
+			Exception exception = assertThrows(ArithmeticException.class, () -> {
+				AQ2.length();
+			});
+			assertEquals(exception.getMessage(), e.getMessage());
+		}
+
+		AQ1.enqueue(11);
+		AQ1.enqueue(44);
+		AQ1.enqueue(22);
+		AQ1.enqueue(33);
+		assertEquals(4, AQ1.length());
+		assertEquals("< 11 44 22 33 >", AQ1.toString());
+		assertEquals(11, AQ1.dequeue());
+		assertEquals("< 44 22 33 >", AQ1.toString());
+	}
+
+	// Test Function #18
+	// Test type : Functional, blackbox
+	// Input : <234 -34 22 -3>
+	// Description : Test setting no value for the queue size, and inserting elements, dequeueing elements
+	// Expected output : < 0, 4, < 234 -34 22 -3 >, 234, < -34 22 -3  >>
+	// Tester : Nicholas Harris
+	// Date : 18th February
+	@Test
+	public void testAQ7() {
+		AQ2 = new AQueue<>();
+
+		assertEquals(0, AQ2.length());
+
+		AQ2.enqueue(234);
+		AQ2.enqueue(-34);
+		AQ2.enqueue(22);
+		AQ2.enqueue(-3);
+		assertEquals(4, AQ2.length());
+		assertEquals("< 234 -34 22 -3 >", AQ2.toString());
+		assertEquals(234, AQ2.dequeue());
+		assertEquals("< -34 22 -3 >", AQ2.toString());
+	}
+
+	// Test Function #18
+	// Test type : Functional, blackbox
+	// Input : <10 15>
+	// Description : Test inserting elements, dequeueing elements
+	// Expected output : < 1, 10, < 15 >>
+	// Tester : Nicholas Harris
+	// Date : 18th February
+	@Test
+	public void testDQBase() {
+		DQ1.enqueue(10);
+		assertEquals(1, DQ1.length());
+		DQ1.enqueue(15);
+		assertEquals(10, DQ1.dequeue());
+
+		assertEquals("< 15 >", DQ1.toString());
+	}
+
+	// Test Function #19
+	// Test type : Functional, blackbox
+	// Input : <10>
+	// Description : Test inserting elements, dequeueing elements, dequeuing from empty queue
+	// Expected output : < 1, 10, NullPointerException >
+	// Tester : Nicholas Harris
+	// Date : 18th February
+	@Test
+	public void testDQ2() {
+		DQ1.enqueue(10);
+		assertEquals(1, DQ1.length());
+		assertEquals(10, DQ1.dequeue());
+
+		try {
+			DQ1.dequeue();
+		} catch (NullPointerException e) {
+			Exception exception = assertThrows(NullPointerException.class, () -> {
+				DQ1.dequeue();
+			});
+			assertEquals(exception.getMessage(), e.getMessage());
+		}
+	}
+
+	// Test Function #20
+	// Test type : Functional, blackbox
+	// Input : <null>
+	// Description : Test inserting null element, dequeueing element
+	// Expected output : < 1, null, 0, <>>
+	// Tester : Nicholas Harris
+	// Date : 18th February
+	@Test
+	public void testDQ3() {
+		DQ1.enqueue(null);
+		assertEquals(1, DQ1.length());
+		assertEquals(null, DQ1.dequeue());
+		assertEquals(0, DQ1.length());
+		assertEquals("< >", DQ1.toString());
+	}
+
+	// Test Function #21
+	// Test type : Functional, blackbox
+	// Input : <3, 10, 15, 15, 20, 11>
+	// Description : Test setting queue size, inserting elements, dequeueing elements
+	// Expected output : < 5, 10, 4, < 15 15 20 11 >>
+	// Tester : Nicholas Harris
+	// Date : 18th February
+	@Test
+	public void testLQBase() {
+
+		LQ1 = new LQueue<>(3);
+
+		LQ1.enqueue(10);
+		LQ1.enqueue(15);
+		LQ1.enqueue(15);
+		LQ1.enqueue(20);
+		LQ1.enqueue(11);
+
+		assertEquals(5, LQ1.length());
+		assertEquals(10, LQ1.dequeue());
+		assertEquals(4, LQ1.length());
+		assertEquals("< 15 15 20 11 >", LQ1.toString());
+	}
+
+	// Test Function #22
+	// Test type : Functional, blackbox
+	// Input : <15, 23>
+	// Description : Test setting queue size, inserting elements, dequeueing elements, dequeing from empty queue
+	// Expected output : < "Queue is empty", 1, 23, 0, < >>
+	// Tester : Nicholas Harris
+	// Date : 18th February
+	@Test
+	public void testLQ2() {
+
+		LQ1 = new LQueue<>(15);
+
+		AssertionError assertionError = assertThrows(AssertionError.class, () -> {
+			LQ1.dequeue();
+		});
+
+		assertEquals("Queue is empty", assertionError.getMessage());
+
+		LQ1.enqueue(23);
+
+		assertEquals(1, LQ1.length());
+		assertEquals(23, LQ1.dequeue());
+		assertEquals(0, LQ1.length());
+		assertEquals("< >", LQ1.toString());
+	}
+
+	// Test Function #23
+	// Test type : Functional, blackbox
+	// Input : <15, null, null >
+	// Description : Test setting queue size, inserting null elements, dequeueing null elements
+	// Expected output : < 2, null, < null >>
+	// Tester : Nicholas Harris
+	// Date : 18th February
+	@Test
+	public void testLQ3() {
+		LQ1 = new LQueue<>(15);
+
+		LQ1.enqueue(null);
+		LQ1.enqueue(null);
+
+		assertEquals(2, LQ1.length());
+		assertEquals(null, LQ1.dequeue());
+		assertEquals("< null >", LQ1.toString());
+	}
+
+	// Test Function #24
+	// Test type : Functional, blackbox
+	// Input : <-10, 22, 33 >
+	// Description : Test setting negative queue size, inserting null elements, dequeueing null elements
+	// Expected output : < 2, 22, < 33 >>
+	// Tester : Nicholas Harris
+	// Date : 18th February
+	@Test
+	public void testLQ4() {
+		LQ1 = new LQueue<>(-10);
+
+		LQ1.enqueue(22);
+		LQ1.enqueue(33);
+
+		assertEquals(2, LQ1.length());
+		assertEquals(22, LQ1.dequeue());
+		assertEquals("< 33 >", LQ1.toString());
+	}
+
+	// Test Function #25
+	// Test type : Functional, blackbox
+	// Input : <-1, 22, 33 >
+	// Description : Test setting -1 queue size, inserting null elements, dequeueing null elements
+	// Expected output : < 2, 22, < 33 >>
+	// Tester : Nicholas Harris
+	// Date : 18th February
+	@Test
+	public void testLQ5() {
+		LQ1 = new LQueue<>(-1);
+
+		LQ1.enqueue(22);
+		LQ1.enqueue(33);
+
+		assertEquals(2, LQ1.length());
+		assertEquals(22, LQ1.dequeue());
+		assertEquals("< 33 >", LQ1.toString());
+	}
+
+	// Test Function #26
+	// Test type : Functional, blackbox
+	// Input : < 22, 33 >
+	// Description : Test no queue size, inserting null elements, dequeueing null elements
+	// Expected output : < 2, 22, < 33 >>
+	// Tester : Nicholas Harris
+	// Date : 18th February
+	@Test
+	public void testLQ6() {
+		LQ1 = new LQueue<>();
+
+		LQ1.enqueue(22);
+		LQ1.enqueue(33);
+
+		assertEquals(2, LQ1.length());
+		assertEquals(22, LQ1.dequeue());
+		assertEquals("< 33 >", LQ1.toString());
 	}
 }
