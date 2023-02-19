@@ -62,7 +62,7 @@ class QueueJUnitTest {
 	// Test Function #2
     // Test type : Functional, blackbox
     // Input : < -2, 10 >
-    // Description : Test setting a negative value for the queue size, inserting an element, and dequeuing an element
+    // Description : Test setting a negative value for the queue size, inserting an element, and dequeue an element
     // Expected output : <NegativeArraySizeException, 0, 10 >
     // Tester : Nicholas Harris
     // Date : 18th February
@@ -108,7 +108,7 @@ class QueueJUnitTest {
 	// Test Function #3
 	// Test type : Functional, blackbox
 	// Input : < -1, null >
-	// Description : Test setting -1 value for the queue size, inserting a null element, and dequeuing an element
+	// Description : Test setting -1 value for the queue size, inserting a null element, and dequeue an element
 	// Expected output : <ArithmeticException, null >
 	// Tester : Nicholas Harris
 	// Date : 18th February
@@ -151,7 +151,7 @@ class QueueJUnitTest {
 	// Test Function #4
 	// Test type : Functional, blackbox
 	// Input : < 8, 1, 2, 3, 4 >
-	// Description : Test setting a positive value for the queue size, and dequeuing an element while it is empty, inserting 4 elements
+	// Description : Test setting a positive value for the queue size, and dequeue an element while it is empty, inserting 4 elements
 	// Expected output : <"Queue is empty" >
 	// Tester : Nicholas Harris
 	// Date : 18th February
@@ -178,7 +178,7 @@ class QueueJUnitTest {
 	// Test Function #5
 	// Test type : Functional, blackbox
 	// Input : <1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 >
-	// Description : Test setting no value for the queue size, and dequeuing an element while it is empty, inserting 11 elements
+	// Description : Test setting no value for the queue size, and dequeue an element while it is empty, inserting 11 elements
 	// Expected output : < "Queue is empty", "Queue is full" >
 	// Tester : Nicholas Harris
 	// Date : 18th February
@@ -217,7 +217,7 @@ class QueueJUnitTest {
 	// Test Function #6
 	// Test type : Functional, blackbox
 	// Input : < 10, 11, 10, 12 >
-	// Description : Test inserting elements to dqueue, dequeueing elements from dqueue
+	// Description : Test inserting elements to dqueue, dequeue elements from dqueue
 	// Expected output : < 11 10 12 >
 	// Tester : Nicholas Harris
 	// Date : 18th February
@@ -236,7 +236,7 @@ class QueueJUnitTest {
 	// Test Function #7
 	// Test type : Functional, blackbox
 	// Input : < null >
-	// Description : Test inserting null element to dqueue, and dequeueing from empty dqueue
+	// Description : Test inserting null element to dqueue, and dequeue from empty dqueue
 	// Expected output : < null >
 	// Tester : Nicholas Harris
 	// Date : 18th February
@@ -260,7 +260,7 @@ class QueueJUnitTest {
 	// Test Function #8
 	// Test type : Functional, blackbox
 	// Input : < -2, 10 >
-	// Description : Test setting a negative value for the queue size, inserting an element, and dequeuing an element
+	// Description : Test setting a negative value for the queue size, inserting an element, and dequeue an element
 	// Expected output : <0, 10 >
 	// Tester : Nicholas Harris
 	// Date : 18th February
@@ -289,7 +289,7 @@ class QueueJUnitTest {
 	// Test Function #9
 	// Test type : Functional, blackbox
 	// Input : < -1, null >
-	// Description : Test setting -1 value for the queue size, inserting a null element, and dequeuing an element
+	// Description : Test setting -1 value for the queue size, inserting a null element, and dequeue an element
 	// Expected output : <0, null, "Queue is empty" >
 	// Tester : Nicholas Harris
 	// Date : 18th February
@@ -324,7 +324,7 @@ class QueueJUnitTest {
 	// Test Function #10
 	// Test type : Functional, blackbox
 	// Input : < 8, 1, 2, 3, 4 >
-	// Description : Test setting a positive value for the queue size, inserting 4 elements and dequeuing one element
+	// Description : Test setting a positive value for the queue size, inserting 4 elements and dequeue one element
 	// Expected output : < "Queue is empty", "< 22 33 44 >" >
 	// Tester : Nicholas Harris
 	// Date : 18th February
@@ -351,7 +351,7 @@ class QueueJUnitTest {
 	// Test Function #11
 	// Test type : Functional, blackbox
 	// Input : <15 22 33 44 >
-	// Description : Test setting no value for the queue size, and inserting elements, dequeueing elements
+	// Description : Test setting no value for the queue size, and inserting elements, dequeue elements
 	// Expected output : < < 15 22 33 44 >, < >, < 15 22 33 44 >, < 15 >, < 22 33 44 >>
 	// Tester : Nicholas Harris
 	// Date : 18th February
@@ -385,7 +385,7 @@ class QueueJUnitTest {
 	// Test Function #12
 	// Test type : Functional, blackbox
 	// Input : <15 15 15 16>
-	// Description : Test setting positive value for the queue size, and inserting elements, dequeueing elements
+	// Description : Test setting positive value for the queue size, and inserting elements, dequeue elements
 	// Expected output : < 1, 3, 15, 2, < 15 16 >>
 	// Tester : Nicholas Harris
 	// Date : 18th February
@@ -412,7 +412,7 @@ class QueueJUnitTest {
 	// Test Function #13
 	// Test type : Functional, blackbox
 	// Input : <2 15 15 16 >
-	// Description : Test setting positive value for the queue size, and inserting elements until queue is full, dequeueing elements
+	// Description : Test setting positive value for the queue size, and inserting elements until queue is full, dequeue elements
 	// Expected output : < 1, 2, Queue is full, 2, 15, 1, < 15 >>
 	// Tester : Nicholas Harris
 	// Date : 18th February
@@ -443,7 +443,7 @@ class QueueJUnitTest {
 	// Test Function #14
 	// Test type : Functional, blackbox
 	// Input : <10 15 >
-	// Description : Test setting positive value for the queue size, and inserting elements, dequeueing elements form empty queue
+	// Description : Test setting positive value for the queue size, and inserting elements, dequeue elements form empty queue
 	// Expected output : < 0, Queue is empty, < 15 >>
 	// Tester : Nicholas Harris
 	// Date : 18th February
@@ -466,7 +466,7 @@ class QueueJUnitTest {
 	// Test Function #15
 	// Test type : Functional, blackbox
 	// Input : <10 null null null>
-	// Description : Test setting positive value for the queue size, and inserting null elements, dequeueing elements
+	// Description : Test setting positive value for the queue size, and inserting null elements, dequeue elements
 	// Expected output : < < null null null >, null, < null null >>
 	// Tester : Nicholas Harris
 	// Date : 18th February
@@ -486,7 +486,7 @@ class QueueJUnitTest {
 	// Test Function #16
 	// Test type : Functional, blackbox
 	// Input : <-10 11 44 22 33>
-	// Description : Test setting negative value for the queue size, and inserting elements, dequeueing elements
+	// Description : Test setting negative value for the queue size, and inserting elements, dequeue elements
 	// Expected output : < NegativeArraySizeException, 4, < 11 44 22 33 >, 11, < 44 22 33 >>
 	// Tester : Nicholas Harris
 	// Date : 18th February
@@ -514,7 +514,7 @@ class QueueJUnitTest {
 	// Test Function #17
 	// Test type : Functional, blackbox
 	// Input : <-1 11 44 22 33>
-	// Description : Test setting -1 value for the queue size, and inserting elements, dequeueing elements
+	// Description : Test setting -1 value for the queue size, and inserting elements, dequeue elements
 	// Expected output : < ArithmeticException, 4, < 11 44 22 33 >, 11, < 44 22 33 >>
 	// Tester : Nicholas Harris
 	// Date : 18th February
@@ -544,7 +544,7 @@ class QueueJUnitTest {
 	// Test Function #18
 	// Test type : Functional, blackbox
 	// Input : <234 -34 22 -3>
-	// Description : Test setting no value for the queue size, and inserting elements, dequeueing elements
+	// Description : Test setting no value for the queue size, and inserting elements, dequeue elements
 	// Expected output : < 0, 4, < 234 -34 22 -3 >, 234, < -34 22 -3  >>
 	// Tester : Nicholas Harris
 	// Date : 18th February
@@ -567,7 +567,7 @@ class QueueJUnitTest {
 	// Test Function #18
 	// Test type : Functional, blackbox
 	// Input : <10 15>
-	// Description : Test inserting elements, dequeueing elements
+	// Description : Test inserting elements, dequeue elements
 	// Expected output : < 1, 10, < 15 >>
 	// Tester : Nicholas Harris
 	// Date : 18th February
@@ -584,7 +584,7 @@ class QueueJUnitTest {
 	// Test Function #19
 	// Test type : Functional, blackbox
 	// Input : <10>
-	// Description : Test inserting elements, dequeueing elements, dequeuing from empty queue
+	// Description : Test inserting elements, dequeue elements, dequeue from empty queue
 	// Expected output : < 1, 10, NullPointerException >
 	// Tester : Nicholas Harris
 	// Date : 18th February
@@ -607,7 +607,7 @@ class QueueJUnitTest {
 	// Test Function #20
 	// Test type : Functional, blackbox
 	// Input : <null>
-	// Description : Test inserting null element, dequeueing element
+	// Description : Test inserting null element, dequeue element
 	// Expected output : < 1, null, 0, <>>
 	// Tester : Nicholas Harris
 	// Date : 18th February
@@ -623,7 +623,7 @@ class QueueJUnitTest {
 	// Test Function #21
 	// Test type : Functional, blackbox
 	// Input : <3, 10, 15, 15, 20, 11>
-	// Description : Test setting queue size, inserting elements, dequeueing elements
+	// Description : Test setting queue size, inserting elements, dequeue elements
 	// Expected output : < 5, 10, 4, < 15 15 20 11 >>
 	// Tester : Nicholas Harris
 	// Date : 18th February
@@ -647,7 +647,7 @@ class QueueJUnitTest {
 	// Test Function #22
 	// Test type : Functional, blackbox
 	// Input : <15, 23>
-	// Description : Test setting queue size, inserting elements, dequeueing elements, dequeing from empty queue
+	// Description : Test setting queue size, inserting elements, dequeue elements, dequeue from empty queue
 	// Expected output : < "Queue is empty", 1, 23, 0, < >>
 	// Tester : Nicholas Harris
 	// Date : 18th February
@@ -673,7 +673,7 @@ class QueueJUnitTest {
 	// Test Function #23
 	// Test type : Functional, blackbox
 	// Input : <15, null, null >
-	// Description : Test setting queue size, inserting null elements, dequeueing null elements
+	// Description : Test setting queue size, inserting null elements, dequeue null elements
 	// Expected output : < 2, null, < null >>
 	// Tester : Nicholas Harris
 	// Date : 18th February
@@ -692,7 +692,7 @@ class QueueJUnitTest {
 	// Test Function #24
 	// Test type : Functional, blackbox
 	// Input : <-10, 22, 33 >
-	// Description : Test setting negative queue size, inserting null elements, dequeueing null elements
+	// Description : Test setting negative queue size, inserting null elements, dequeue null elements
 	// Expected output : < 2, 22, < 33 >>
 	// Tester : Nicholas Harris
 	// Date : 18th February
@@ -711,7 +711,7 @@ class QueueJUnitTest {
 	// Test Function #25
 	// Test type : Functional, blackbox
 	// Input : <-1, 22, 33 >
-	// Description : Test setting -1 queue size, inserting null elements, dequeueing null elements
+	// Description : Test setting -1 queue size, inserting null elements, dequeue null elements
 	// Expected output : < 2, 22, < 33 >>
 	// Tester : Nicholas Harris
 	// Date : 18th February
@@ -730,7 +730,7 @@ class QueueJUnitTest {
 	// Test Function #26
 	// Test type : Functional, blackbox
 	// Input : < 22, 33 >
-	// Description : Test no queue size, inserting null elements, dequeueing null elements
+	// Description : Test no queue size, inserting null elements, dequeue null elements
 	// Expected output : < 2, 22, < 33 >>
 	// Tester : Nicholas Harris
 	// Date : 18th February
