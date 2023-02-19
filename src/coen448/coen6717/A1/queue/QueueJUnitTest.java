@@ -36,7 +36,7 @@ class QueueJUnitTest {
 	// Test Function #1
     // Test type : Structural, white-box
     // Input : < -2, 10 >
-    // Description : Test setting a negative value for the queue size, inserting an element, and dequeuing an element
+    // Description : Test setting a negative value for the queue size, inserting an element, and dequeue an element
     // Expected output : <NegativeArraySizeException, 0, 10 >
     // Tester : Nicholas Harris, Matthew Sklivas
     // Date : 18th February
@@ -82,7 +82,7 @@ class QueueJUnitTest {
 	// Test Function #2
 	// Test type : Structural, white-box
 	// Input : < -1, null >
-	// Description : Test setting -1 value for the queue size, inserting a null element, and dequeuing an element
+	// Description : Test setting -1 value for the queue size, inserting a null element, and dequeue an element
 	// Expected output : <ArithmeticException, null >
 	// Tester : Nicholas Harris, Matthew Sklivas
 	// Date : 18th February
@@ -125,7 +125,7 @@ class QueueJUnitTest {
 	// Test Function #3
 	// Test type : Structural, white-box
 	// Input : < 8, 1, 2, 3, 4 >
-	// Description : Test setting a positive value for the queue size, and dequeuing an element while it is empty, inserting 4 elements
+	// Description : Test setting a positive value for the queue size, and dequeue an element while it is empty, inserting 4 elements
 	// Expected output : <"Queue is empty" >
 	// Tester : Nicholas Harris, Matthew Sklivas
 	// Date : 18th February
@@ -152,7 +152,7 @@ class QueueJUnitTest {
 	// Test Function #4
 	// Test type : Structural, white-box
 	// Input : <1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 >
-	// Description : Test setting no value for the queue size, and dequeuing an element while it is empty, inserting 11 elements
+	// Description : Test setting no value for the queue size, and dequeue an element while it is empty, inserting 11 elements
 	// Expected output : < "Queue is empty", "Queue is full" >
 	// Tester : Nicholas Harris, Matthew Sklivas
 	// Date : 18th February
@@ -191,7 +191,7 @@ class QueueJUnitTest {
 	// Test Function #5
 	// Test type : Structural, white-box
 	// Input : < 10, 11, 10, 12 >
-	// Description : Test inserting elements to dqueue, dequeueing elements from dqueue
+	// Description : Test inserting elements to dqueue, dequeue elements from dqueue
 	// Expected output : < 11 10 12 >
 	// Tester : Nicholas Harris, Matthew Sklivas
 	// Date : 18th February
@@ -210,7 +210,7 @@ class QueueJUnitTest {
 	// Test Function #6
 	// Test type : Structural, white-box
 	// Input : < null >
-	// Description : Test inserting null element to dqueue, and dequeueing from empty dqueue
+	// Description : Test inserting null element to dqueue, and dequeue from empty dqueue
 	// Expected output : < null >
 	// Tester : Nicholas Harris, Matthew Sklivas
 	// Date : 18th February
@@ -325,12 +325,14 @@ class QueueJUnitTest {
 	// Test Function #10
 	// Test type : Structural, white-box
 	// Input : <15 22 33 44 >
-	// Description : Test setting no value for the queue size, and inserting elements, dequeueing elements
+	// Description : Inserting elements, dequeue elements
 	// Expected output : < < 15 22 33 44 >, < >, < 15 22 33 44 >, < 15 >, < 22 33 44 >>
 	// Tester : Nicholas Harris, Matthew Sklivas
 	// Date : 18th February
 	@Test
-	public void testNoLQSize() {
+	public void testValueEnqueue() {
+		assertEquals(0, LQ2.length());
+
 		LQ2.enqueue(15);
 		LQ2.enqueue(22);
 		LQ2.enqueue(33);
@@ -351,6 +353,31 @@ class QueueJUnitTest {
 		assertEquals("< 22 33 44 >", LQ1.toString());
 	}
 
+	// Test Function #8
+	// Test type : Functional, blackbox
+	// Input : < null >
+	// Description : inserting a null element, and dequeue an element from empty.
+	// Expected output : <0, null, "Queue is empty" >
+	// Tester : Nicholas Harris
+	// Date : 18th February
+	@Test
+	public void testNullEnqueue() {
+		assertEquals(0, LQ1.length());
+
+		AssertionError assertionError = assertThrows(AssertionError.class, () -> {
+			LQ1.dequeue();
+		});
+
+		assertEquals("Queue is empty", assertionError.getMessage());
+
+		LQ1.enqueue(null);
+
+		try {
+			assertEquals(null, LQ1.dequeue());
+		} catch (AssertionError ae) {
+			assertNotEquals("Queue is empty", ae.getMessage());  // fails if we get here
+		}
+	}
 
 	/*
 		Base Choice Coverage (BCC)
@@ -359,7 +386,7 @@ class QueueJUnitTest {
 	// Test Function #11
 	// Test type : Structural, white-box
 	// Input : <15 15 15 16>
-	// Description : Test setting positive value for the queue size, and inserting elements, dequeueing elements
+	// Description : Test setting positive value for the queue size, and inserting elements, dequeue elements
 	// Expected output : < 1, 3, 15, 2, < 15 16 >>
 	// Tester : Nicholas Harris, Matthew Sklivas
 	// Date : 18th February
@@ -386,7 +413,7 @@ class QueueJUnitTest {
 	// Test Function #12
 	// Test type : Structural, white-box
 	// Input : <2 15 15 16 >
-	// Description : Test setting positive value for the queue size, and inserting elements until queue is full, dequeueing elements
+	// Description : Test setting positive value for the queue size, and inserting elements until queue is full, dequeue elements
 	// Expected output : < 1, 2, Queue is full, 2, 15, 1, < 15 >>
 	// Tester : Nicholas Harris, Matthew Sklivas
 	// Date : 18th February
@@ -417,7 +444,7 @@ class QueueJUnitTest {
 	// Test Function #13
 	// Test type : Structural, white-box
 	// Input : <10 15 >
-	// Description : Test setting positive value for the queue size, and inserting elements, dequeueing elements form empty queue
+	// Description : Test setting positive value for the queue size, and inserting elements, dequeue elements form empty queue
 	// Expected output : < 0, Queue is empty, < 15 >>
 	// Tester : Nicholas Harris, Matthew Sklivas
 	// Date : 18th February
@@ -440,7 +467,7 @@ class QueueJUnitTest {
 	// Test Function #14
 	// Test type : Structural, white-box
 	// Input : <10 null null null>
-	// Description : Test setting positive value for the queue size, and inserting null elements, dequeueing elements
+	// Description : Test setting positive value for the queue size, and inserting null elements, dequeue elements
 	// Expected output : < < null null null >, null, < null null >>
 	// Tester : Nicholas Harris, Matthew Sklivas
 	// Date : 18th February
@@ -460,7 +487,7 @@ class QueueJUnitTest {
 	// Test Function #15
 	// Test type : Structural, white-box
 	// Input : <-10 11 44 22 33>
-	// Description : Test setting negative value for the queue size, and inserting elements, dequeueing elements
+	// Description : Test setting negative value for the queue size, and inserting elements, dequeue elements
 	// Expected output : < NegativeArraySizeException, 4, < 11 44 22 33 >, 11, < 44 22 33 >>
 	// Tester : Nicholas Harris, Matthew Sklivas
 	// Date : 18th February
@@ -488,7 +515,7 @@ class QueueJUnitTest {
 	// Test Function #16
 	// Test type : Structural, white-box
 	// Input : <-1 11 44 22 33>
-	// Description : Test setting -1 value for the queue size, and inserting elements, dequeueing elements
+	// Description : Test setting -1 value for the queue size, and inserting elements, dequeue elements
 	// Expected output : < ArithmeticException, 4, < 11 44 22 33 >, 11, < 44 22 33 >>
 	// Tester : Nicholas Harris, Matthew Sklivas
 	// Date : 18th February
@@ -518,7 +545,7 @@ class QueueJUnitTest {
 	// Test Function #17
 	// Test type : Structural, white-box
 	// Input : <234 -34 22 -3>
-	// Description : Test setting no value for the queue size, and inserting elements, dequeueing elements
+	// Description : Test setting no value for the queue size, and inserting elements, dequeue elements
 	// Expected output : < 0, 4, < 234 -34 22 -3 >, 234, < -34 22 -3  >>
 	// Tester : Nicholas Harris, Matthew Sklivas
 	// Date : 18th February
@@ -541,7 +568,7 @@ class QueueJUnitTest {
 	// Test Function #18
 	// Test type : Structural, white-box
 	// Input : <10 15>
-	// Description : Test inserting elements, dequeueing elements
+	// Description : Test inserting elements, dequeue elements
 	// Expected output : < 1, 10, < 15 >>
 	// Tester : Nicholas Harris, Matthew Sklivas
 	// Date : 18th February
@@ -558,7 +585,7 @@ class QueueJUnitTest {
 	// Test Function #19
 	// Test type : Structural, white-box
 	// Input : <10>
-	// Description : Test inserting elements, dequeueing elements, dequeuing from empty queue
+	// Description : Test inserting elements, dequeue elements, dequeue from empty queue
 	// Expected output : < 1, 10, NullPointerException >
 	// Tester : Nicholas Harris, Matthew Sklivas
 	// Date : 18th February
@@ -581,7 +608,7 @@ class QueueJUnitTest {
 	// Test Function #20
 	// Test type : Structural, white-box
 	// Input : <null>
-	// Description : Test inserting null element, dequeueing element
+	// Description : Test inserting null element, dequeue element
 	// Expected output : < 1, null, 0, <>>
 	// Tester : Nicholas Harris, Matthew Sklivas
 	// Date : 18th February
@@ -603,9 +630,6 @@ class QueueJUnitTest {
 	// Date : 18th February
 	@Test
 	public void testLQBase() {
-
-		LQ1 = new LQueue<>(3);
-
 		LQ1.enqueue(10);
 		LQ1.enqueue(15);
 		LQ1.enqueue(15);
@@ -627,9 +651,6 @@ class QueueJUnitTest {
 	// Date : 18th February
 	@Test
 	public void testLQ2() {
-
-		LQ1 = new LQueue<>(15);
-
 		AssertionError assertionError = assertThrows(AssertionError.class, () -> {
 			LQ1.dequeue();
 		});
@@ -653,8 +674,6 @@ class QueueJUnitTest {
 	// Date : 18th February
 	@Test
 	public void testLQ3() {
-		LQ1 = new LQueue<>(15);
-
 		LQ1.enqueue(null);
 		LQ1.enqueue(null);
 
